@@ -20,8 +20,8 @@
 char *get_next_line(int fd);
 
 /*-------------Utiles Func---------------*/
-//void	*ft_calloc(size_t nmemb, size_t size);
-char *ft_strjoin(char const *s1, char const *s2);
+
+char	*ft_strjoin(char const *s1, char const *s2);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 char	*ft_strdup(const char *src);
 size_t	ft_strlen(const char *str);

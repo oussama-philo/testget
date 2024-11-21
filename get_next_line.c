@@ -26,7 +26,7 @@ static char *read_line(int fd, char *position)
 		nbyt_read = read(fd, buff, BUFFER_SIZE);
 		if (nbyt_read < 0)
 		{
-			return (free(buff), NULL);
+			return (free(buff), free(position), NULL);
 		}
 		if (nbyt_read == 0)
 			break;
@@ -81,7 +81,10 @@ static char *clean_position(char *position)
 	len = ft_strlen(position) - i - 1;
 	new_position = malloc(len + 1);
 	if (!new_position)
+	{
+		free(position);
 		return (NULL);
+	}
 	ft_memcpy(new_position, position + i + 1, len);
 	new_position[len] = '\0';
 	free(position);
@@ -95,7 +98,7 @@ char *get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 	{
-		return (0);
+		return (NULL);
 	}
 	position = read_line(fd, position);
 	if (!position)
